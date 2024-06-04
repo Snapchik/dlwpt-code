@@ -9,6 +9,8 @@ from collections import namedtuple
 import SimpleITK as sitk
 import numpy as np
 
+import random
+
 import torch
 import torch.cuda
 from torch.utils.data import Dataset
@@ -34,6 +36,8 @@ def getCandidateInfoList(requireOnDisk_bool=True):
     # We construct a set with all series_uids that are present on disk.
     # This will let us use the data, even if we haven't downloaded all of
     # the subsets yet.
+    #There is a bug in implementation, in original structure luna data is located in data
+    #not data-unversioned
     mhd_list = glob.glob('data-unversioned/part2/luna/subset*/*.mhd')
     presentOnDisk_set = {os.path.split(p)[-1][:-4] for p in mhd_list}
 
@@ -160,6 +164,8 @@ class LunaDataset(Dataset):
                  series_uid=None,
             ):
         self.candidateInfo_list = copy.copy(getCandidateInfoList())
+        #Did randomisation as was instructed in exercise
+        #self.candidateInfo_list = random.shuffle(candidateInfo_list)
 
         if series_uid:
             self.candidateInfo_list = [
