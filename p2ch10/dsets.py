@@ -9,7 +9,7 @@ from collections import namedtuple
 import SimpleITK as sitk
 import numpy as np
 
-import random
+#import random
 
 import torch
 import torch.cuda
@@ -164,8 +164,7 @@ class LunaDataset(Dataset):
                  series_uid=None,
             ):
         self.candidateInfo_list = copy.copy(getCandidateInfoList())
-        #Did randomisation as was instructed in exercise
-        #self.candidateInfo_list = random.shuffle(candidateInfo_list)
+        #random.shuffle(self.candidateInfo_list)
 
         if series_uid:
             self.candidateInfo_list = [
