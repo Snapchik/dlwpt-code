@@ -2,7 +2,8 @@ import argparse
 import datetime
 import os
 import sys
-
+sys.path.append('../')
+sys.path.append('../')
 import numpy as np
 
 from torch.utils.tensorboard import SummaryWriter
@@ -13,9 +14,9 @@ from torch.optim import SGD, Adam
 from torch.utils.data import DataLoader
 
 from util.util import enumerateWithEstimate
-from .dsets import LunaDataset
+from dsets import LunaDataset
 from util.logconf import logging
-from .model import LunaModel
+from model import LunaModel
 
 log = logging.getLogger(__name__)
 # log.setLevel(logging.WARN)
